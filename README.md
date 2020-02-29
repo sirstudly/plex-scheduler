@@ -6,7 +6,24 @@ A Prime Digital Academy challenge for creating a full stack MEAN application tha
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
-### Installing
+
+### Installing via Docker
+
+Run dockerized application:
+
+```
+docker-compose up -d
+```
+
+Import data:
+
+```
+docker-compose exec database mongoimport --host mongodb  --db realestate --collection rentals --file /dump/scripts/rentalData.js
+docker-compose exec database mongoimport --host mongodb  --db realestate --collection listings --file /dump/scripts/listingData.js
+```
+
+
+### Installing the normal way (without Docker)
 
 Get the app running by first installing the dependencies
 
