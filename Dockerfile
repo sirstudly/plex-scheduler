@@ -25,4 +25,4 @@ EXPOSE 5000
 HEALTHCHECK --interval=1m --timeout=5s --start-period=1m \
   CMD nc -z -w5 127.0.0.1 5080 || exit 1
 
-CMD npm start
+CMD echo "Warming up" && sleep 5 && npm start

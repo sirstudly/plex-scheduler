@@ -1,7 +1,7 @@
 version: '3'
 services:
-  database:
-    image: mongo:4.0.4
+  mongo:
+    image: mongo
     restart: always
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
@@ -10,15 +10,25 @@ services:
     volumes:
       - ./dump/realestate:/dump/realestate-listing
       - ./server/data:/dump/scripts
-      - ../mongo-data:/data/db
+      - ./db-init.js:/docker-entrypoint-initdb.d/init.js:ro
     ports:
       - '27017-27019:27017-27019'
+
+  mongo-express:
+    image: mongo-express
+    restart: always
+    ports:
+      - 8081:8081
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: example
+
   web:
     build: .
-    image: realworldio/realestate-angularjs
+    image: realestate-angularjs
     environment:
-      MONGODB_URI: mongodb://root:example@database/realestate
+      MONGODB_URI: mongodb://user:secretPassword@mongo/realestate
     depends_on:
-      - database
+      - mongo
     ports:
-      - 8080:5000
+      - 8082:5000
