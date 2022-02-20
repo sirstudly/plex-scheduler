@@ -18,10 +18,11 @@ docker-compose up -d
 Import data:
 
 ```
-docker-compose exec database mongoimport --host mongodb  --db realestate --collection rentals --file /dump/scripts/rentalData.js
-docker-compose exec database mongoimport --host mongodb  --db realestate --collection listings --file /dump/scripts/listingData.js
+docker-compose exec database mongorestore --host database  -d realestate -u user -p secretPassword -c rentals /usr/src/data/realestate/rentals.bson
+docker-compose exec database mongorestore --host database  -d realestate -u user -p secretPassword -c listings /usr/src/data/realestate/listings.bson
 ```
 
+The app will be running on http://localhost:8080
 
 ### Installing the normal way (without Docker)
 
