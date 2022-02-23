@@ -8,10 +8,10 @@ app.service('RentalService', ['$http', '$location', function ($http, $location) 
     self.addProperty = function (newProperty) {
         $http.post('/rentals', newProperty).then(function (response) {
             console.log('post rental response:', response);
-            swal({
+            Swal.fire({
                 title: 'Success!',
                 text: response.config.data.city + ' has been added',
-                type: 'success'
+                icon: 'success'
             });
         }).then(function () {
             $location.path('/rentals');

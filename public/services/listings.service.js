@@ -11,10 +11,10 @@ app.service('ListingService', ['$http', '$location', function ($http, $location)
     self.addProperty = function (newProperty) {
         $http.post('/listings', newProperty).then(function (response) {
             console.log('post listing response:', response);
-            swal({
+            Swal.fire({
                 title: 'Success!',
                 text: response.config.data.city + ' has been added',
-                type: 'success'
+                icon: 'success'
             })
         }).then(function () {
             $location.path('/listings');

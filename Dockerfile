@@ -1,6 +1,5 @@
 # The first instruction is what image we want to base our container on
-# We Use an official Node version 10 image as a parent image
-FROM node:8.10
+FROM node:17
 
 # Create an environment variable for MongoDB URI
 ENV MONGODB_URI='mongodb://database:27017/realestate'
@@ -11,7 +10,7 @@ ENV MONGODB_URI='mongodb://database:27017/realestate'
 WORKDIR /usr/src/app
 
 # Copy the npm dependencies into the working directory of docker image
-COPY ./package*.json /usr/src/app/
+COPY ./package.json /usr/src/app/
 
 # Install any needed packages specified in package.json
 RUN npm install
